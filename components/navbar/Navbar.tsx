@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { ShoppingCart } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,7 +18,7 @@ const Navbar = () => {
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           {/* Logo */}
           <div className="text-xl font-bold text-gray-800 dark:text-gray-200">
-            MyStore
+            Nexify
           </div>
 
           {/* Search Bar */}
@@ -31,8 +32,8 @@ const Navbar = () => {
 
           {/* Buttons */}
           <div className="flex items-center gap-4">
-            <Button variant="ghost" className="hidden md:inline-flex">
-              Cart
+            <Button variant="ghost" size="lg" className="hidden md:inline-flex">
+              <ShoppingCart />
             </Button>
             <Button variant="ghost" className="hidden md:inline-flex">
               Mode
@@ -46,12 +47,16 @@ const Navbar = () => {
                 </Avatar>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuLabel>My Profile</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>Profile</DropdownMenuItem>
-                <DropdownMenuItem>Billing</DropdownMenuItem>
-                <DropdownMenuItem>Team</DropdownMenuItem>
-                <DropdownMenuItem>Subscription</DropdownMenuItem>
+                <DropdownMenuItem>Home</DropdownMenuItem>
+                <DropdownMenuItem>About</DropdownMenuItem>
+                <DropdownMenuItem>Products</DropdownMenuItem>
+                <DropdownMenuItem>Favourites</DropdownMenuItem>
+                <DropdownMenuItem>Cart</DropdownMenuItem>
+                <DropdownMenuItem>Orders</DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>Logout</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
