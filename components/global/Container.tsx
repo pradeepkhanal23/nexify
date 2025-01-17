@@ -13,7 +13,7 @@ type ContainerProps = {
 // creating a universal(global) container that wraps any component to maintain consistency with its fixed set of classes ("max-w-7xl mx-auto p-5") in this case along with the provided additional classnames
 const Container = ({ children, className }: ContainerProps) => {
   return (
-    <div className={cn("max-w-7xl mx-auto p-5", className)}>{children}</div>
+    <div className={cn("max-w-7xl mx-auto p-8", className)}>{children}</div>
   );
 };
 export default Container;
