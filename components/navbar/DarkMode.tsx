@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Moon, MoonIcon, Sun } from "lucide-react";
+import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "../ui/button";
 
@@ -11,6 +11,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+
+// this is straight up dropdown theme button from shadcn dark/light mode documentation
+// we need to refer this doc for the refrence https://ui.shadcn.com/docs/dark-mode/next
 
 const DarkMode = () => {
   const { setTheme } = useTheme();

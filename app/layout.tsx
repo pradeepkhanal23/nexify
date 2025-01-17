@@ -15,6 +15,7 @@ export const metadata: Metadata = {
   description: "Online ecommerce website all in one place",
 };
 
+// we need to use that supressHydrationWarning attribute in the html to suppress the hydration error that is being displayed in the console
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -23,6 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} `}>
+        {/* our global provider component that will have all of our global providers in the app */}
         <Providers>
           <Navbar />
           <Container>{children}</Container>
