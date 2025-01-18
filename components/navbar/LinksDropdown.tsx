@@ -1,5 +1,3 @@
-import { Button } from "../ui/button";
-import { FiMenu } from "react-icons/fi";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,6 +7,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { navlinks } from "@/utils/navlinks";
+import Link from "next/link";
 
 const LinksDropdown = () => {
   return (
@@ -22,14 +22,17 @@ const LinksDropdown = () => {
       <DropdownMenuContent>
         <DropdownMenuLabel>My Profile</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Home</DropdownMenuItem>
-        <DropdownMenuItem>About</DropdownMenuItem>
-        <DropdownMenuItem>Products</DropdownMenuItem>
-        <DropdownMenuItem>Favourites</DropdownMenuItem>
-        <DropdownMenuItem>Cart</DropdownMenuItem>
-        <DropdownMenuItem>Orders</DropdownMenuItem>
+        {navlinks.map((link, i) => {
+          return (
+            <DropdownMenuItem key={i}>
+              <Link className="capitalize cursor-pointer" href={link.href}>
+                {link.label}
+              </Link>
+            </DropdownMenuItem>
+          );
+        })}
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Logout</DropdownMenuItem>
+        <DropdownMenuItem className="cursor-pointer">Logout</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
