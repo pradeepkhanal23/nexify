@@ -59,7 +59,7 @@
     "name": "Electric Standing Desk",
     "company": "FlexDesk",
     "description": "An adjustable electric standing desk for ergonomic workspaces.",
-    "featured": true,
+    "featured": false,
     "image": "https://images.pexels.com/photos/376872/pexels-photo-376872.jpeg",
     "price": 44999
   },
