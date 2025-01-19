@@ -1,4 +1,4 @@
-// we need to make sure that we use the common js format here since its in the server
+// we need to make sure that we use the common js module import here since its in the server
 
 const { PrismaClient } = require("@prisma/client");
 const products = require("./products.json");
