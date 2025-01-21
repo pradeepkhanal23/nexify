@@ -1,7 +1,7 @@
 import { fetchFeaturedProducts } from "../../utils/actions";
 import EmptyList from "../global/EmptyList";
 import SectionTitle from "../global/SectionTitle";
-import ProductsGrid from "../product/ProductsGrid";
+import ProductsGrid from "../products/ProductsGrid";
 
 const FeaturedProducts = async () => {
   const products = await fetchFeaturedProducts();

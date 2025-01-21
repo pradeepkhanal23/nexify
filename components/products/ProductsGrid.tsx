@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import Image from "next/image";
 import { formatPrice } from "@/utils/format";
+import FavouriteToggleButton from "./FavouriteToggleButton";
 
 const ProductsGrid = ({ products }: { products: Product[] }) => {
   return (
@@ -42,6 +43,7 @@ const ProductsGrid = ({ products }: { products: Product[] }) => {
                   </CardContent>
                 </Card>
               </Link>
+              <FavouriteToggleButton />
             </article>
           );
         })}
