@@ -27,7 +27,7 @@ export default function RootLayout({
         {/* our global provider component that will have all of our global providers in the app */}
         <Providers>
           <Navbar />
-          <Container>{children}</Container>
+          <Container className="py-12 md:py-24">{children}</Container>
         </Providers>
       </body>
     </html>

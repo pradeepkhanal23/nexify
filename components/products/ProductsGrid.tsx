@@ -8,7 +8,7 @@ import FavouriteToggleButton from "./FavouriteToggleButton";
 const ProductsGrid = ({ products }: { products: Product[] }) => {
   return (
     <>
-      <section className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <section className="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {products.map((product) => {
           const { image, name, price, company } = product;
           const productId = product.id;

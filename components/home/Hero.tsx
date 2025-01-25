@@ -3,7 +3,7 @@ import HeroCarousel from "./HeroCarousel";
 
 export default function Hero() {
   return (
-    <section className="container mx-auto px-4 py-12 md:py-24">
+    <section className="container mx-auto px-4 ">
       {/* Grid layout for text and carousel */}
       <div className="grid gap-8 md:grid-cols-2 md:gap-12 items-center">
         {/* Text Content */}

@@ -11,7 +11,7 @@ const FeaturedProducts = async () => {
   console.log(products);
 
   return (
-    <section>
+    <section className="mt-5">
       <SectionTitle title="Featured Products" />
       <ProductsGrid products={products} />
     </section>
