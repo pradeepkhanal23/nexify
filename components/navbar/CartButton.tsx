@@ -3,7 +3,7 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 
 const CartButton = () => {
-  let randomNumber = 2;
+  const randomNumber = 2;
   return (
     <Button size="icon" variant="outline" asChild className="relative">
       <Link href="/cart">
