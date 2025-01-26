@@ -8,7 +8,7 @@ import LinksDropdown from "./LinksDropdown";
 const Navbar = () => {
   return (
     <nav className="border-b">
-      <Container className="sticky top-0 z-10 flex items-center flex-col sm:flex-row justify-between">
+      <Container className="sticky top-0 z-10 flex gap-x-3  items-center justify-between">
         <div className="w-1/3">
           <Logo />
         </div>

@@ -20,7 +20,7 @@ export default function HeroCarousel() {
         <CarouselContent>
           {carouselImages.map((src, index) => (
             <CarouselItem key={index}>
-              <div className="p-1">
+              <div className="p-1 w-full h-full">
                 <Image
                   src={src}
                   alt={`Hero image ${index + 1}`}
