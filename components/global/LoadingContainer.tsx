@@ -1,15 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
 
-const LoadingContainer = () => {
-  return (
-    <section className="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-      <LoadingCard />
-      <LoadingCard />
-      <LoadingCard />
-    </section>
-  );
-};
-
 function LoadingCard() {
   return (
     <>
@@ -34,4 +24,15 @@ function LoadingCard() {
     </>
   );
 }
+
+const LoadingContainer = () => {
+  return (
+    <section className="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <LoadingCard />
+      <LoadingCard />
+      <LoadingCard />
+    </section>
+  );
+};
+
 export default LoadingContainer;
