@@ -1,5 +1,7 @@
 // since it is a server components, we get the access of the params by default as a prop in this page(products page in this case) component
 
+import ProductsContainer from "@/components/products/ProductsContainer";
+
 const ProductsPage = async ({
   searchParams,
 }: {
@@ -22,7 +24,7 @@ const ProductsPage = async ({
 
   return (
     <>
-      <h1>Products Page</h1>
+      <ProductsContainer search={search} layout={layout} />
     </>
   );
 };
