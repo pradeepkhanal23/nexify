@@ -7,10 +7,8 @@ const FeaturedProducts = async () => {
 
   if (products.length === 0) return <EmptyList message="Products not found" />;
 
-  console.log(products);
-
   return (
-    <section className="mt-5">
+    <section>
       <ProductsGrid products={products} />
     </section>
   );

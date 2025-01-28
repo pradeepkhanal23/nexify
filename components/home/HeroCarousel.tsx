@@ -15,7 +15,7 @@ const carouselImages = [Hero1, Hero2, Hero3, Hero4];
 
 export default function HeroCarousel() {
   return (
-    <>
+    <section className="hidden lg:block">
       <Carousel className="w-full max-w-lg mx-auto">
         <CarouselContent>
           {carouselImages.map((src, index) => (
@@ -35,6 +35,6 @@ export default function HeroCarousel() {
         <CarouselPrevious />
         <CarouselNext />
       </Carousel>
-    </>
+    </section>
   );
 }
