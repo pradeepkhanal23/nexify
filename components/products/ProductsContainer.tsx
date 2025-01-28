@@ -64,17 +64,16 @@ const ProductsContainer = async ({
         )}
 
         {/* conditionally rendering the products view based on the layout given */}
-        <Suspense fallback={<LoadingContainer />}>
-          {layout === "grid" ? (
-            <>
-              <ProductsGrid products={allProducts} />
-            </>
-          ) : (
-            <>
-              <ProductsList products={allProducts} />
-            </>
-          )}
-        </Suspense>
+
+        {layout === "grid" ? (
+          <Suspense fallback={<LoadingContainer />}>
+            <ProductsGrid products={allProducts} />
+          </Suspense>
+        ) : (
+          <>
+            <ProductsList products={allProducts} />
+          </>
+        )}
       </section>
     </div>
   );
