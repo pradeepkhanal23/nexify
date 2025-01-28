@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import HeroCarousel from "./HeroCarousel";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -16,7 +17,7 @@ export default function Hero() {
             comfort and elegance. Find your perfect look today.
           </p>
           <Button size="lg" className="w-full sm:w-auto">
-            Shop All
+            <Link href="/products">Shop All</Link>
           </Button>
         </div>
 

@@ -2,13 +2,8 @@
 // The PrismaClient is the main class provided by Prisma, which acts as the interface to interact with the database (queries, mutations, etc.).
 import { PrismaClient } from "@prisma/client";
 
-// The withAccelerate feature requires installing the @prisma/extension-accelerate package separately.
-// so we install it by writing "npm install @prisma/extension-accelerate"
-// The withAccelerate extension is part of Prisma Accelerate, which improves query performance by using optimized database operations and in-memory caching. It enhances Prisma Client with additional functionalities to optimize query handling.
-import { withAccelerate } from "@prisma/extension-accelerate";
-
-// Instantiating the PrismaClient and extending it with the withAccelerate extension.
-const prisma = new PrismaClient().$extends(withAccelerate());
+// Instantiating the PrismaClient
+const prisma = new PrismaClient();
 
 // previously I just instantiated the prisma with the prisma client where I was creating a multiple new connection to the database  which was causing the connection exhaustion and breaking up
 // it used to work after I restart but the same breaking up used to happen after a certain period of time

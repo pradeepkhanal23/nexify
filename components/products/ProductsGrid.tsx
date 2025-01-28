@@ -32,18 +32,22 @@ const ProductsGrid = ({ products }: { products: Product[] }) => {
 
                     {/* Product Information Section */}
                     <div className="mt-4 text-center">
-                      <h2 className="text-lg  capitalize">{name}</h2>
-                      <p className="text-lg font-semibold text-gray-600 tracking-tighter dark:text-muted-foreground">
+                      <h2 className="text-lg  capitalize font-semibold">
+                        {name}
+                      </h2>
+                      <p className="text-lg  text-gray-600  dark:text-muted-foreground">
                         {company}
                       </p>
-                      <p className="text-muted-foreground mt-2">
+                      <p className="text-muted-foreground mt-2 font-mono">
                         {formatPrice(price)}
                       </p>
                     </div>
                   </CardContent>
                 </Card>
               </Link>
-              <FavouriteToggleButton />
+              <div className="absolute top-6 right-10">
+                <FavouriteToggleButton />
+              </div>
             </article>
           );
         })}

@@ -3,6 +3,10 @@ import Link from "next/link";
 import { LayoutGrid, LayoutList } from "lucide-react";
 import { Separator } from "../ui/separator";
 import { fetchAllProducts } from "@/utils/actions";
+import ProductsGrid from "./ProductsGrid";
+import { Suspense } from "react";
+import LoadingContainer from "../global/LoadingContainer";
+import ProductsList from "./ProductsList";
 
 const ProductsContainer = async ({
   search,
@@ -13,6 +17,7 @@ const ProductsContainer = async ({
 }) => {
   const allProducts = await fetchAllProducts();
   const totalLength = allProducts.length;
+  const searchTerm = search ? `&search=${search}` : "";
 
   console.log(allProducts);
 
@@ -31,7 +36,7 @@ const ProductsContainer = async ({
             size="icon"
             asChild
           >
-            <Link href={`/products?layout=grid`}>
+            <Link href={`/products?layout=grid${searchTerm}`}>
               <LayoutGrid />
             </Link>
           </Button>
@@ -40,7 +45,7 @@ const ProductsContainer = async ({
             size="icon"
             asChild
           >
-            <Link href={`/products?layout=list`}>
+            <Link href={`/products?layout=list${searchTerm}`}>
               <LayoutList />
             </Link>
           </Button>
@@ -57,6 +62,19 @@ const ProductsContainer = async ({
             Sorry, no products matched your search..
           </p>
         )}
+
+        {/* conditionally rendering the products view based on the layout given */}
+        <Suspense fallback={<LoadingContainer />}>
+          {layout === "grid" ? (
+            <>
+              <ProductsGrid products={allProducts} />
+            </>
+          ) : (
+            <>
+              <ProductsList products={allProducts} />
+            </>
+          )}
+        </Suspense>
       </section>
     </div>
   );
