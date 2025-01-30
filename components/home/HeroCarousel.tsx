@@ -20,13 +20,13 @@ export default function HeroCarousel() {
         <CarouselContent>
           {carouselImages.map((src, index) => (
             <CarouselItem key={index}>
-              <div className="p-1 w-full h-full">
+              <div className="p-1 w-full h-62">
                 <Image
                   src={src}
                   alt={`Hero image ${index + 1}`}
                   width={600}
                   height={600}
-                  className="w-full rounded-lg object-cover"
+                  className="w-full h-auto rounded-lg object-cover"
                 />
               </div>
             </CarouselItem>

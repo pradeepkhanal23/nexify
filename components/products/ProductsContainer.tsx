@@ -19,8 +19,6 @@ const ProductsContainer = async ({
   const totalLength = allProducts.length;
   const searchTerm = search ? `&search=${search}` : "";
 
-  console.log(allProducts);
-
   return (
     <div className="mt-5  max-w-5xl mx-auto">
       {/* header */}
