@@ -1,6 +1,6 @@
 "use client";
 import { Input } from "../ui/input";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // we have this hook "useSearchParams" in client component to access the URL.
 // we use searchParams prop to access URL in server component
@@ -32,6 +32,16 @@ const NavSearch = () => {
     // this will replace the URL with our new URL
     replace(`/products?${params}`);
   };
+
+  // This useEffect is absolutely crucial because it helps to:
+  // Sync the search state with the URL's search parameter to handle:
+  // 1. Back/forward navigation
+  // 2. Programmatic URL changes
+  // 3. Manual URL edits
+  useEffect(() => {
+    const searchValue = searchParams.get("search")?.toString() || "";
+    setSearch(searchValue);
+  }, [searchParams]);
 
   return (
     <div className="w-full">
