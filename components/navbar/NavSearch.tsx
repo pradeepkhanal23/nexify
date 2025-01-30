@@ -1,6 +1,6 @@
 "use client";
 import { Input } from "../ui/input";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 // we have this hook "useSearchParams" in client component to access the URL.
 // we use searchParams prop to access URL in server component
