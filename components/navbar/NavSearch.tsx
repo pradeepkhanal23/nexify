@@ -1,7 +1,7 @@
 "use client";
 import { Input } from "../ui/input";
 import { useState, useEffect } from "react";
-
+import { useDebouncedCallback } from "use-debounce";
 // we have this hook "useSearchParams" in client component to access the URL.
 // we use searchParams prop to access URL in server component
 import { useSearchParams, useRouter } from "next/navigation";
@@ -33,6 +33,9 @@ const NavSearch = () => {
     replace(`/products?${params}`);
   };
 
+  // debouncing our handleSearch function with the delay of 300ms
+  const debouncedHandleSearch = useDebouncedCallback(handleSearch, 500);
+
   // This useEffect is absolutely crucial because it helps to:
   // Sync the search state with the URL's search parameter to handle:
   // 1. Back/forward navigation
@@ -52,7 +55,8 @@ const NavSearch = () => {
         value={search}
         onChange={(e) => {
           setSearch(e.target.value);
-          handleSearch(e.target.value);
+          // calls the debounced handle search instead of regular handle search
+          debouncedHandleSearch(e.target.value);
         }}
       />
     </div>

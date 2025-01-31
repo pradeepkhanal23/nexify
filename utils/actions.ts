@@ -9,7 +9,8 @@ export const fetchFeaturedProducts = async () => {
   });
   return featuredProducts;
 };
-// fetching all the products
+
+// fetching all the products OR fetch based on the search provided
 export const fetchAllProducts = async ({ search = "" }: { search: string }) => {
   // we can directly return the result as well without using the async and await keyword in this case
   const products = await prisma.product.findMany({
