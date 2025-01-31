@@ -6,12 +6,12 @@ const ProductsPage = async ({
   searchParams,
 }: {
   // also when we manually go to the products page, we dont have any layout, thats why the default view would be grid, so we make the loyout property optional
-  searchParams: {
+  searchParams: Promise<{
     layout?: string;
 
     // same with the search term, if we go manually to the products page then there wont have a search term in the url so we make this optional as well
     search?: string;
-  };
+  }>;
 }) => {
   // the dynamic apis are now asynchronous so we need to wait for the searchParams
 
