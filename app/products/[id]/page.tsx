@@ -9,12 +9,13 @@ import { formatPrice } from "@/utils/format";
 const SingleProductPage = async ({
   params,
 }: {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }) => {
   // Ensuring the "params.id" is resolved before using it
-  const { id } = await params;
+  // refer to the next js latest docs to extract the dynamic section when we recieve it as a prop to either layout, page or router etc
+  const id = (await params).id;
   const singleProduct = await fetchSingleProduct(id);
   const { name, company, description, image, price } = singleProduct;
 
