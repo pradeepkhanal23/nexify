@@ -24,6 +24,7 @@ export default function HeroCarousel() {
                 <Image
                   src={src}
                   alt={`Hero image ${index + 1}`}
+                  priority
                   width={600}
                   height={600}
                   className="w-full h-auto rounded-lg object-cover"

@@ -33,7 +33,7 @@ const SingleProductPage = async ({
               alt={name}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              className="w-full rounded-lg object-cover"
+              className="w-full rounded-lg object-cover dark:border-gray-600 border"
               priority // Ensures the image is prioritized for loading
             />
           </div>
