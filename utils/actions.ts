@@ -1,3 +1,4 @@
+import { redirect } from "next/navigation";
 import prisma from "./db";
 
 // fetching the featured Products
@@ -32,4 +33,19 @@ export const fetchAllProducts = async ({ search = "" }: { search: string }) => {
     },
   });
   return products;
+};
+
+// fetching single product
+const fetchSingleProduct = async (productId: string) => {
+  const product = await prisma.product.findUnique({
+    where: {
+      id: productId,
+    },
+  });
+
+  if (!product) {
+    redirect("/products");
+  }
+
+  return product;
 };
