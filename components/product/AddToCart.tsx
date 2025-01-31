@@ -3,8 +3,8 @@ import { Button } from "../ui/button";
 
 const AddToCart = () => {
   return (
-    <Button>
-      <ShoppingCart />
+    <Button className="capitalize" size="lg">
+      Add to Cart <ShoppingCart />
     </Button>
   );
 };

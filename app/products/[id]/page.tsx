@@ -3,6 +3,8 @@ import { fetchSingleProduct } from "@/utils/actions";
 import Image from "next/image";
 import ProductRating from "../../../components/product/ProductRating";
 import AddToCart from "@/components/product/AddToCart";
+import FavouriteToggleButton from "@/components/products/FavouriteToggleButton";
+import { formatPrice } from "@/utils/format";
 
 const SingleProductPage = async ({
   params,
@@ -11,34 +13,63 @@ const SingleProductPage = async ({
     id: string;
   };
 }) => {
-  const singleProduct = await fetchSingleProduct(params.id);
-
+  // Ensuring the "params.id" is resolved before using it
+  const { id } = await params;
+  const singleProduct = await fetchSingleProduct(id);
   const { name, company, description, image, price } = singleProduct;
+
   return (
     <>
       <section className="container mx-auto px-4 py-8">
+        {/* Breadcrumb Component */}
         <BreadCrumbs productName={name} />
-        <div className="mt-6 grid md:grid-cols-2 gap-8">
-          <div className="md:sticky md:top-24">
+
+        {/* Product Grid */}
+        <div className="mt-6 grid gap-8 lg:grid-cols-2 lg:gap-16">
+          {/* Image Section */}
+          <div className="relative h-96 lg:h-auto">
             <Image
-              src={image || "/placeholder.svg"}
+              src={image}
               alt={name}
-              width={400}
-              height={400}
-              className="w-full rounded-lg shadow-lg"
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="w-full rounded-lg object-cover"
+              priority // Ensures the image is prioritized for loading
             />
           </div>
-          <div className="flex flex-col">
-            <h1 className="text-3xl font-bold mb-2">{name}</h1>
-            <p className="text-sm text-muted-foreground mb-4">by {company}</p>
-            <div className="flex items-center mb-4">
-              <div className="flex mr-2">
-                <ProductRating />
+
+          {/* Product Info Section */}
+          <div className="flex flex-col gap-y-3">
+            {/* Product Name and Favourite Button */}
+            <div className="flex  gap-4 items-center justify-between ">
+              <h1 className="capitalize text-2xl font-bold sm:text-3xl ">
+                {name}
+              </h1>
+              <div className="mr-auto ml-5">
+                <FavouriteToggleButton />
               </div>
             </div>
-            <p className="text-2xl font-bold mb-4">${price.toFixed(2)}</p>
-            <p className="text-gray-600 mb-6">{description}</p>
-            <div className="mt-auto">
+
+            {/* Product Rating */}
+            <ProductRating />
+
+            {/* Company Name */}
+            <h4 className="text-lg text-muted-foreground sm:text-xl">
+              {company}
+            </h4>
+
+            {/* Price */}
+            <span className="font-mono font-semibold bg-muted w-[140px] p-3 rounded-lg text-base">
+              {formatPrice(price)}
+            </span>
+
+            {/* Description */}
+            <p className="text-muted-foreground leading-7 sm:leading-8">
+              {description}
+            </p>
+
+            {/* Add to Cart Button */}
+            <div className="mt-4">
               <AddToCart />
             </div>
           </div>
@@ -47,4 +78,5 @@ const SingleProductPage = async ({
     </>
   );
 };
+
 export default SingleProductPage;
