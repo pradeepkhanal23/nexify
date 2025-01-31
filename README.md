@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Nexify 🛒
 
-## Getting Started
+**Nexify** is a modern, full-stack eCommerce website built with cutting-edge technologies to deliver a seamless shopping experience. This project is currently under active development, and we're working hard to bring you the best features!
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Technologies Used
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Frontend**:
+  - Next.js 15 (App Router)
+  - TypeScript
+  - Tailwind CSS
+  - shadcn/ui (for beautiful, accessible components)
+- **Backend**:
+  - Next.js API Routes
+- **Authentication**:
+  - Clerk (for secure and easy-to-implement user authentication)
+- **Database**:
+  - (PostgreSQL.)
+- **Other Tools**:
+  - React Hook Form (for form management)
+  - Zod (for schema validation)
+  - Vercel (for deployment)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ✨ Features (Planned)
 
-## Learn More
+- **User Authentication**: Secure login and signup using Clerk.
+- **Product Listings**: Browse products with filters and search functionality.
+- **Product Details**: View detailed information about each product.
+- **Shopping Cart**: Add/remove products and manage quantities.
+- **Checkout**: Secure and seamless checkout process.
+- **Order History**: View past orders and track their status.
+- **Admin Dashboard**: Manage products, orders, and users (for admins).
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🔗 Links
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Live Project**: [Nexify (Under Construction)](https://nexify-seven.vercel.app/)  
+  _Note: This project is still under development. Some features may not be fully functional yet._
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
