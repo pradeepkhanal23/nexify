@@ -5,6 +5,9 @@ import Navbar from "@/components/navbar/Navbar";
 import Container from "@/components/global/Container";
 import Providers from "./providers";
 
+// clerk provider
+import { ClerkProvider } from "@clerk/nextjs";
+
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "600", "900"],
@@ -22,14 +25,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${poppins.className} `}>
-        {/* our global provider component that will have all of our global providers in the app */}
-        <Providers>
-          <Navbar />
-          <Container className="py-12 md:py-24">{children}</Container>
-        </Providers>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en" suppressHydrationWarning>
+        <body className={`${poppins.className} `}>
+          {/* our global provider component that will have all of our global providers in the app */}
+          <Providers>
+            <Navbar />
+            <Container className="py-12 md:py-24">{children}</Container>
+          </Providers>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
