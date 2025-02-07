@@ -14,7 +14,7 @@ export default clerkMiddleware(async (auth, req) => {
   // check to see if the user is admin
   const isAdminUser = (await auth()).userId === process.env.ADMIN_USER_ID;
 
-  // if the user is not an admin and tries to access the admin route, then we redirect the user to the homepage
+  // if the user is not an admin and tries to access the admin route, then we redirect the user to the
   if (!isAdminUser && isAdminRoute(req)) {
     return NextResponse.redirect(new URL("/", req.url));
   }

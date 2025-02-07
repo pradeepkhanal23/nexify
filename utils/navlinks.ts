@@ -12,6 +12,7 @@ export const navlinks: Navlinks[] = [
   { href: "/favourites", label: "favorites" },
   { href: "/cart", label: "cart" },
   { href: "/orders", label: "orders" },
+  { href: "/admin/sales", label: "dashboard" },
 ];
 
 // navlinks for the admin

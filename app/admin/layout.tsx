@@ -1,7 +1,10 @@
 import { Separator } from "@/components/ui/separator";
 import Sidebar from "./Sidebar";
-import Container from "@/components/global/Container";
-const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
+
+
+const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
+  
+
   return (
     <>
       <>
@@ -10,6 +13,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 
         <section className="grid lg:grid-cols-12 gap-12 mt-12 ">
           <div className="lg:col-span-2">
+            {/* because our sidebar is going to be a client component and we cannot access the userId which needs to await for auth(), we are going to do that here and pass it down as a prop*/}
             <Sidebar />
           </div>
           <div className="lg:col-span-10 px-4">{children}</div>

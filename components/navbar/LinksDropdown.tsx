@@ -1,8 +1,8 @@
+import { auth } from "@clerk/nextjs/server";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
@@ -14,7 +14,10 @@ import UserIcon from "./UserIcon";
 import SignOutLink from "./SignOutButton";
 import { SignedOut, SignInButton, SignUpButton, SignedIn } from "@clerk/nextjs";
 
-const LinksDropdown = () => {
+const LinksDropdown = async () => {
+  const { userId } = await auth();
+
+  const isAdmin = userId === process.env.ADMIN_USER_ID;
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -44,9 +47,12 @@ const LinksDropdown = () => {
 
         {/* if the user is signed in we provide the other options along with logout*/}
         <SignedIn>
-          {navlinks.map((link, i) => {
+          {navlinks.map((link) => {
+            // checking to see if the user is admin so that we can provide the dashboard option for the admin user
+            if (link.label === "dashboard" && !isAdmin) return null;
+
             return (
-              <DropdownMenuItem key={i}>
+              <DropdownMenuItem key={link.href}>
                 <Link className="capitalize cursor-pointer" href={link.href}>
                   {link.label}
                 </Link>

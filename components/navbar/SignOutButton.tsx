@@ -10,7 +10,7 @@ function SignOutLink() {
   const handleLogout = () => {
     toast({
       title: "User Logout Action",
-      description: "User is logging out..",
+      description: "User Logged out",
     });
   };
   return (
