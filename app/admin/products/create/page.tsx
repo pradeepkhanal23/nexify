@@ -1,19 +1,12 @@
-import { Button } from "@/components/ui/button";
-
 import { faker } from "@faker-js/faker";
 import FormInput from "@/components/form/FormInput";
 import PriceInput from "@/components/form/PriceInput";
 import ImageInput from "@/components/form/ImageInput";
 import TextAreaInput from "@/components/form/TextAreaInput";
 import CheckboxInput from "@/components/form/CheckboxInput";
-
-const createProductAction = async (formData: FormData) => {
-  "use server";
-  // this is the server action
-  // we used to call fetch/axios to make an api call by defining the methods ("GET","POST", etc) like before with payload
-  //but  we can directly call the action in the server from our component here
-  console.log(formData.get("name"));
-};
+import FormContainer from "@/components/form/FormContainer";
+import { createProductAction } from "@/utils/actions";
+import SubmitButton from "@/components/form/SubmitButton";
 
 const CreateProductPage = () => {
   const name = faker.commerce.productName();
@@ -26,8 +19,8 @@ const CreateProductPage = () => {
     <section>
       <h1 className="text-2xl font-semibold mb-8 capitalize">create product</h1>
       <div className="border p-8 rounded-md">
-        <form action={createProductAction}>
-          <div>
+        <FormContainer action={createProductAction}>
+          <div className="grid gap-4 md:grid-cols-2 my-4">
             <FormInput
               type="text"
               name="name"
@@ -51,12 +44,9 @@ const CreateProductPage = () => {
           <div className="mt-6">
             <CheckboxInput name="featured" label="featured" />
           </div>
-          <div className="mt-4">
-            <Button type="submit" size="lg">
-              Submit
-            </Button>
-          </div>
-        </form>
+
+          <SubmitButton text="Create Product" className="mt-8" />
+        </FormContainer>
       </div>
     </section>
   );

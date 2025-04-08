@@ -1,3 +1,5 @@
+"use server";
+
 import { redirect } from "next/navigation";
 import prisma from "./db";
 
@@ -9,6 +11,16 @@ export const fetchFeaturedProducts = async () => {
     },
   });
   return featuredProducts;
+};
+
+// creating a product action
+export const createProductAction = async (
+  prevState: any,
+  formData: FormData
+): Promise<{ message: string }> => {
+  return {
+    message: "Product Created",
+  };
 };
 
 // fetching all the products OR fetch based on the search provided
