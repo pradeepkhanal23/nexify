@@ -5,7 +5,8 @@
     "description": "A modern ergonomic chair designed for maximum comfort during long working hours.",
     "featured": true,
     "image": "https://images.pexels.com/photos/769732/pexels-photo-769732.jpeg",
-    "price": 19999
+    "price": 19999,
+    "clerkId": "clerkId"
   },
   {
     "name": "Wireless Keyboard",
@@ -13,15 +14,17 @@
     "description": "A sleek wireless keyboard featuring Bluetooth connectivity and a rechargeable battery.",
     "featured": false,
     "image": "https://images.pexels.com/photos/3862655/pexels-photo-3862655.jpeg",
-    "price": 4999
-  },s
+    "price": 4999,
+    "clerkId": "clerkId"
+  },
   {
     "name": "Noise-Canceling Headphones",
     "company": "SoundTech",
     "description": "Experience crystal clear audio with active noise cancellation technology.",
     "featured": true,
     "image": "https://images.pexels.com/photos/5440274/pexels-photo-5440274.jpeg",
-    "price": 14999
+    "price": 14999,
+    "clerkId": "clerkId"
   },
   {
     "name": "Smart Watch",
@@ -29,7 +32,8 @@
     "description": "A stylish smart watch with health monitoring features and customizable watch faces.",
     "featured": true,
     "image": "https://images.pexels.com/photos/267394/pexels-photo-267394.jpeg",
-    "price": 22999
+    "price": 22999,
+    "clerkId": "clerkId"
   },
   {
     "name": "Gaming Laptop",
@@ -37,7 +41,8 @@
     "description": "A high-performance gaming laptop with the latest graphics card and SSD storage.",
     "featured": false,
     "image": "https://images.pexels.com/photos/2047905/pexels-photo-2047905.jpeg",
-    "price": 124999
+    "price": 124999,
+    "clerkId": "clerkId"
   },
   {
     "name": "4K Monitor",
@@ -45,7 +50,8 @@
     "description": "Ultra-high definition 4K monitor with a slim bezel design for an immersive experience.",
     "featured": false,
     "image": "https://images.pexels.com/photos/6829330/pexels-photo-6829330.jpeg",
-    "price": 59999
+    "price": 59999,
+    "clerkId": "clerkId"
   },
   {
     "name": "Portable Speaker",
@@ -53,7 +59,8 @@
     "description": "Compact Bluetooth speaker with waterproof design and rich bass.",
     "featured": true,
     "image": "https://images.pexels.com/photos/374094/pexels-photo-374094.jpeg",
-    "price": 9999
+    "price": 9999,
+    "clerkId": "clerkId"
   },
   {
     "name": "Electric Standing Desk",
@@ -61,7 +68,8 @@
     "description": "An adjustable electric standing desk for ergonomic workspaces.",
     "featured": false,
     "image": "https://images.pexels.com/photos/376872/pexels-photo-376872.jpeg",
-    "price": 44999
+    "price": 44999,
+    "clerkId": "clerkId"
   },
   {
     "name": "Smartphone Gimbal",
@@ -69,7 +77,8 @@
     "description": "Stabilize your smartphone videos with this lightweight and easy-to-use gimbal.",
     "featured": false,
     "image": "https://images.pexels.com/photos/3945683/pexels-photo-3945683.jpeg",
-    "price": 7999
+    "price": 7999,
+    "clerkId": "clerkId"
   },
   {
     "name": "Portable Projector",
@@ -77,6 +86,7 @@
     "description": "A compact projector with high resolution and wireless connectivity.",
     "featured": false,
     "image": "https://images.pexels.com/photos/11035665/pexels-photo-11035665.jpeg",
-    "price": 29999
+    "price": 29999,
+    "clerkId": "clerkId"
   }
 ]
