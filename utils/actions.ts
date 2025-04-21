@@ -2,6 +2,7 @@
 import { currentUser, auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import prisma from "./db";
+import { productSchema } from "./schemas";
 
 // fetching the featured Products
 export const fetchFeaturedProducts = async () => {
@@ -43,6 +44,10 @@ export const createProductAction = async (
   const user = await getAuthUser();
 
   try {
+    const rawData = Object.fromEntries(formData);
+
+    const validatedFields = productSchema.parse(rawData);
+
     const name = formData.get("name") as string;
     const company = formData.get("company") as string;
     // the price is a string to begin with so using Number() constructor we turned it into a number
@@ -55,15 +60,12 @@ export const createProductAction = async (
 
     await prisma.product.create({
       data: {
-        name,
-        company,
-        price,
+        ...validatedFields,
         image: "/images/apple-watch.png",
-        description,
-        featured,
         clerkId: user.id,
       },
     });
+
     return { message: "product created" };
   } catch (error) {
     return renderError(error);
