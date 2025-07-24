@@ -2,7 +2,7 @@
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import prisma from "./db";
-import { productSchema, validateWithZodSchema } from "./schemas";
+import { imageSchema, productSchema, validateWithZodSchema } from "./schemas";
 
 // fetching the featured Products
 export const fetchFeaturedProducts = async () => {
@@ -47,13 +47,22 @@ export const createProductAction = async (
 
   try {
     // raw data without validation
-    const rawData = Object.fromEntries(formData);
-
     // while doing the safe parsing, zod wont throw the error straight away
     // it provides the success and data properties inside an object which we can access and display the result accordingly either its a sucess or an error occured
 
+    const rawData = Object.fromEntries(formData);
+
+    // making sure the file is of type File
+    const file = formData.get("image") as File;
+
     // now instead of doing the safe parse we use the validateWithZodSchema reuseable function to validate the schema against the raw data
+    // let say if we create another schema called image, then we can actually use this function to validate the schema for the given raw data
     const validatedFields = validateWithZodSchema(productSchema, rawData);
+
+    // now validating the uploaded file against our imageSchema and passing the uploaded file in the image property
+    const validatedFile = validateWithZodSchema(imageSchema, { image: file });
+
+    console.log(validatedFile);
 
     await prisma.product.create({
       data: {

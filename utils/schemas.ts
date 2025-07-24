@@ -25,8 +25,29 @@ export const productSchema = z.object({
   ),
 });
 
-// because we have to validate the raw data against the schema everytime we perform some actions with CRUD, we try to create a separate fucntion which does that instead of repeating it many times during each actions
+// creating a Zod schema that expects an object with an image field.
+export const imageSchema = z.object({
+  //  this image field must pass the validateImageFile() function.
+  image: validateImageFile(),
+});
 
+function validateImageFile() {
+  const maxUploadSize = 1024 * 1024; // 1 MB in bytes
+  const acceptedFileTypes = ["image/"];
+
+  return z
+    .instanceof(File) // Making sure it's a File object
+    .refine((file) => {
+      return !file || file.size <= maxUploadSize; // File must be ≤ 1MB
+    }, `File size must be less than 1 MB`)
+    .refine((file) => {
+      return (
+        !file || acceptedFileTypes.some((type) => file.type.startsWith(type))
+      ); // Must be an image MIME type
+    }, "File must be an image");
+}
+
+// because we have to validate the raw data against the schema everytime we perform some actions with CRUD, we try to create a separate fucntion which does that instead of repeating it many times during each actions
 // this function takes the raw data from the form and the schema of the product which we created
 export function validateWithZodSchema<T>(
   schema: ZodSchema<T>,
