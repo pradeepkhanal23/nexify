@@ -3,6 +3,7 @@ import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import prisma from "./db";
 import { imageSchema, productSchema, validateWithZodSchema } from "./schemas";
+import { uploadImage } from "./supabase";
 
 // fetching the featured Products
 export const fetchFeaturedProducts = async () => {
@@ -62,21 +63,26 @@ export const createProductAction = async (
     // now validating the uploaded file against our imageSchema and passing the uploaded file in the image property
     const validatedFile = validateWithZodSchema(imageSchema, { image: file });
 
-    console.log(validatedFile);
+    // Uploading the image to Supabase Storage using the helper function.
+    // This returns the full public URL of the uploaded image (e.g. hosted on Supabase's CDN).
+    // The image is stored in a specific bucket with a unique name (e.g. timestamped) to avoid filename conflicts.
+    // This URL will later be saved in the database as part of the product's image reference.
+    const fullPath = await uploadImage(validatedFile.image);
 
     await prisma.product.create({
       data: {
         ...validatedFields,
-        // manual passing of image for now, until we create a separate schema for image validation and upload
-        image: "/images/hero4.png",
+        //  now acutally passing the full path of the image url which will be made available to the public via supabase
+        image: fullPath,
         clerkId: user.id,
       },
     });
-
-    return { message: "product created" };
   } catch (error) {
     return renderError(error);
   }
+
+  // also redirecting to the products page upon successfull image upload
+  redirect("/admin/products");
 };
 
 // fetching all the products OR fetch based on the search provided
