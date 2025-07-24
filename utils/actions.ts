@@ -1,8 +1,8 @@
 "use server";
-import { currentUser, auth } from "@clerk/nextjs/server";
+import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import prisma from "./db";
-import { productSchema } from "./schemas";
+import { productSchema, validateWithZodSchema } from "./schemas";
 
 // fetching the featured Products
 export const fetchFeaturedProducts = async () => {
@@ -14,6 +14,7 @@ export const fetchFeaturedProducts = async () => {
   return featuredProducts;
 };
 
+// error rendering action
 const renderError = (
   error: unknown
 ): {
@@ -26,6 +27,7 @@ const renderError = (
   };
 };
 
+// getting user action
 const getAuthUser = async () => {
   const user = await currentUser();
 
@@ -44,24 +46,20 @@ export const createProductAction = async (
   const user = await getAuthUser();
 
   try {
+    // raw data without validation
     const rawData = Object.fromEntries(formData);
 
-    const validatedFields = productSchema.parse(rawData);
+    // while doing the safe parsing, zod wont throw the error straight away
+    // it provides the success and data properties inside an object which we can access and display the result accordingly either its a sucess or an error occured
 
-    const name = formData.get("name") as string;
-    const company = formData.get("company") as string;
-    // the price is a string to begin with so using Number() constructor we turned it into a number
-    const price = Number(formData.get("price") as string);
-    const image = formData.get("image") as File;
-    const description = formData.get("description") as string;
-
-    // converting featured into boolean as well
-    const featured = Boolean(formData.get("featured") as string);
+    // now instead of doing the safe parse we use the validateWithZodSchema reuseable function to validate the schema against the raw data
+    const validatedFields = validateWithZodSchema(productSchema, rawData);
 
     await prisma.product.create({
       data: {
         ...validatedFields,
-        image: "/images/apple-watch.png",
+        // manual passing of image for now, until we create a separate schema for image validation and upload
+        image: "/images/hero4.png",
         clerkId: user.id,
       },
     });
