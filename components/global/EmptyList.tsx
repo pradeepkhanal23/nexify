@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 
 type EmptyListProps = {
-  message: string;
+  message?: string;
   className?: string;
 };
 

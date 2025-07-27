@@ -39,6 +39,13 @@ const getAuthUser = async () => {
   return user;
 };
 
+// preventing the direct access by url
+const getAdminUser = async () => {
+  const user = await getAuthUser();
+  if (user.id !== process.env.ADMIN_USER_ID) redirect("/");
+  return user;
+};
+
 // creating a product action
 export const createProductAction = async (
   prevState: any,
@@ -122,4 +129,15 @@ export const fetchSingleProduct = async (productId: string) => {
   }
 
   return product;
+};
+
+// fetching the admin products
+export const fetchAdminProducts = async () => {
+  await getAdminUser();
+  const products = await prisma.product.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+  return products;
 };
