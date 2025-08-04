@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import prisma from "./db";
 import { imageSchema, productSchema, validateWithZodSchema } from "./schemas";
 import { uploadImage } from "./supabase";
+import { revalidatePath } from "next/cache";
 
 // fetching the featured Products
 export const fetchFeaturedProducts = async () => {
@@ -140,4 +141,23 @@ export const fetchAdminProducts = async () => {
     },
   });
   return products;
+};
+
+// delete server action
+export const deleteProductAction = async (prevState: { productId: string }) => {
+  const { productId } = prevState;
+  await getAdminUser();
+
+  try {
+    await prisma.product.delete({
+      where: {
+        id: productId,
+      },
+    });
+
+    revalidatePath("/admin/products");
+    return { message: "product removed" };
+  } catch (error) {
+    return renderError(error);
+  }
 };

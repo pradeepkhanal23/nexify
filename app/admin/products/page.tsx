@@ -11,6 +11,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { formatPrice } from "@/utils/format";
+import { IconButton } from "@/components/form/ActionButtons";
+import { deleteProductAction } from "@/utils/actions";
+import FormContainer from "@/components/form/FormContainer";
 
 const ProductsPage = async () => {
   const items = await fetchAdminProducts();
@@ -46,7 +49,12 @@ const ProductsPage = async () => {
                 <TableCell>{company}</TableCell>
                 <TableCell>{formatPrice(price)}</TableCell>
 
-                <TableCell className="flex items-center gap-x-2"></TableCell>
+                <TableCell className="flex items-center gap-x-2">
+                  <Link href={`/admin/products/${productId}/edit`}>
+                    <IconButton actionType="edit" />
+                  </Link>
+                  <DeleteProduct productId={productId} />
+                </TableCell>
               </TableRow>
             );
           })}
@@ -55,4 +63,14 @@ const ProductsPage = async () => {
     </section>
   );
 };
+
+// separate delete button
+function DeleteProduct({ productId }: { productId: string }) {
+  const deleteProduct = deleteProductAction.bind(null, { productId });
+  return (
+    <FormContainer action={deleteProduct}>
+      <IconButton actionType="delete" />
+    </FormContainer>
+  );
+}
 export default ProductsPage;

@@ -1,10 +1,7 @@
 import { Separator } from "@/components/ui/separator";
 import Sidebar from "./Sidebar";
 
-
 const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
-  
-
   return (
     <>
       <>
