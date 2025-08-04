@@ -42,3 +42,11 @@ export const uploadImage = async (image: File) => {
   // Get the public URL for the uploaded image so it can be used in the UI
   return supabase.storage.from(bucket).getPublicUrl(newName).data.publicUrl;
 };
+
+// deleting the image from the supase as well
+
+export const deleteImage = (url: string) => {
+  const imageName = url.split("/").pop();
+  if (!imageName) throw new Error("Invalid URL");
+  return supabase.storage.from(bucket).remove([imageName]);
+};

@@ -3,7 +3,7 @@ import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import prisma from "./db";
 import { imageSchema, productSchema, validateWithZodSchema } from "./schemas";
-import { uploadImage } from "./supabase";
+import { deleteImage, uploadImage } from "./supabase";
 import { revalidatePath } from "next/cache";
 
 // fetching the featured Products
@@ -149,12 +149,12 @@ export const deleteProductAction = async (prevState: { productId: string }) => {
   await getAdminUser();
 
   try {
-    await prisma.product.delete({
+    const product = await prisma.product.delete({
       where: {
         id: productId,
       },
     });
-
+    await deleteImage(product.image);
     revalidatePath("/admin/products");
     return { message: "product removed" };
   } catch (error) {
