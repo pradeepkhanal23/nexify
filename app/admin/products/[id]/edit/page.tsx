@@ -43,9 +43,12 @@ import CheckboxInput from "@/components/form/CheckboxInput";
 import ImageInputContainer from "@/components/form/ImageInputContainer";
 
 async function EditProductPage({ params }: { params: { id: string } }) {
-  const { id } = params;
+  const { id } = await params;
+
+  console.log(id);
   const product = await fetchAdminProductDetails(id);
   const { name, company, description, featured, price } = product;
+
   return (
     <section>
       <h1 className="text-2xl font-semibold mb-8 capitalize">update product</h1>
