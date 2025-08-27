@@ -42,7 +42,11 @@ import SubmitButton from "@/components/form/SubmitButton";
 import CheckboxInput from "@/components/form/CheckboxInput";
 import ImageInputContainer from "@/components/form/ImageInputContainer";
 
-async function EditProductPage({ params }: { params: { id: string } }) {
+async function EditProductPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const { id } = await params;
 
   console.log(id);
