@@ -17,7 +17,7 @@ import FormContainer from "@/components/form/FormContainer";
 
 const ProductsPage = async () => {
   const items = await fetchAdminProducts();
-  if (items.length === 0) return <EmptyList />;
+  if (items.length === 0) return <EmptyList message="No items found" />;
 
   return (
     <section>
