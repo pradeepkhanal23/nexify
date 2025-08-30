@@ -47,7 +47,7 @@ const SingleProductPage = async ({
                 {name}
               </h1>
               <div className="mr-auto ml-5">
-                <FavouriteToggleButton />
+                <FavouriteToggleButton productId={id} />
               </div>
             </div>
 
