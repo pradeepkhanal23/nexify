@@ -50,7 +50,7 @@ function ProductsList({ products }: { products: Product[] }) {
 
             {/* Favourite toggle button */}
             <div className="absolute top-7 left-8">
-              <FavouriteToggleButton />
+              <FavouriteToggleButton productId={productId} />
             </div>
           </article>
         );
