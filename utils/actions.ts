@@ -22,7 +22,7 @@ const renderError = (
 ): {
   message: string;
 } => {
-  console.log(error);
+  // console.log("Error received:", error, "Type:", typeof error);
 
   return {
     message: error instanceof Error ? error.message : "An error occurred",
@@ -222,4 +222,65 @@ export const updateProductImageAction = async (
     return renderError(error);
   }
   return { message: "Product Image updated successfully" };
+};
+
+// fetching the favourite with the help of id action
+export const fetchFavoriteId = async ({ productId }: { productId: string }) => {
+  const user = await getAuthUser();
+  const favorite = await prisma.favorite.findFirst({
+    where: {
+      productId,
+      clerkId: user.id,
+    },
+    select: {
+      id: true,
+    },
+  });
+  return favorite?.id || null;
+};
+
+// toggling the favotite action
+export const toggleFavoriteAction = async (prevState: {
+  productId: string;
+  favoriteId: string | null;
+  pathname: string;
+}) => {
+  const user = await getAuthUser();
+  const { productId, favoriteId, pathname } = prevState;
+  try {
+    if (favoriteId) {
+      await prisma.favorite.delete({
+        where: {
+          id: favoriteId,
+        },
+      });
+    } else {
+      await prisma.favorite.create({
+        data: {
+          productId,
+          clerkId: user.id,
+        },
+      });
+    }
+    revalidatePath(pathname);
+    return {
+      message: favoriteId ? "Removed from Favorites" : "Added to Favorites",
+    };
+  } catch (error) {
+    return renderError(error);
+  }
+};
+
+// fetching users favorite
+export const fetchUserFavorites = async () => {
+  const user = await getAuthUser();
+  const favorites = await prisma.favorite.findMany({
+    where: {
+      clerkId: user.id,
+    },
+    include: {
+      product: true,
+    },
+  });
+  return favorites;
 };
